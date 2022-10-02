@@ -32,19 +32,18 @@ public class SportyShoeServiceImpl implements SportyShoeService{
 		@Bean
 		@PostConstruct
 		public void init() {
-			Shoes s1 = new Shoes("Adidas 22yds","Cricket",1560.99);
-			Shoes s2 = new Shoes("Puma Wired Run","Football",1890.99);
-			Shoes s3 = new Shoes("Nike Zoom Freak 4","Basketball",1560.00);
+			Shoes s1 = new Shoes("Shoe Name 1","Basketball",1000.24);
+			Shoes s2 = new Shoes("Shoe Name 2","Cricket",1100.24);
+			Shoes s3 = new Shoes("Shoe Name 3","Running",900.24);
 			
 			shoesRepository.save(s1);
 			shoesRepository.save(s2);
 			shoesRepository.save(s3);
 			
 			Date d = new Date(0);
-			
-			PurchaseReport pr1 = new PurchaseReport("firstUser", "Basketball", d, "Nike Zoom Frek4 :7");
-			PurchaseReport pr2 = new PurchaseReport("secondUser", "Cricket", d, "Adidas 22yds :6");
-			PurchaseReport pr3 = new PurchaseReport("thirdUser", "Football", d, "Puma Wired Run :7");
+			PurchaseReport pr1 = new PurchaseReport("user_1","Running",d,"adidas_runner:5,nike_airmax:10");
+			PurchaseReport pr2 = new PurchaseReport("user_2","Cricket",d,"adidas_cricket:5,nike_cricket:10");
+			PurchaseReport pr3 = new PurchaseReport("user_3","Basketball",d,"adidas_basketball:5,nike_basketball:10");
 			
 			purchaseReportRepository.save(pr1);
 			purchaseReportRepository.save(pr2);

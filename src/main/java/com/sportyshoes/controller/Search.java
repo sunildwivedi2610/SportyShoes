@@ -6,7 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,7 +22,10 @@ public class Search {
 	
 	@Autowired
 	private SportyShoeService service;
-	
+	@InitBinder
+    public void setAllowedFields(WebDataBinder dataBinder) {
+        dataBinder.setDisallowedFields("id");
+	}
 	@GetMapping("/admin/shoes/all")
 	public ResponseEntity<List<Shoes>> getAllShoes(){
 		return new ResponseEntity<List<Shoes>>(service.getAllShoes(), HttpStatus.OK);
@@ -34,7 +39,7 @@ public class Search {
 		Date dateOfPurchase = new Date(dateInMs);
 		return new ResponseEntity<List<PurchaseReport>>(service.getAllPurchaseReportsBydateOfPurchase(dateOfPurchase), HttpStatus.OK);
 	}
-	@GetMapping("/admin/purchasereports/all")
+	@GetMapping("/admin/purchasereport/all")
 	public ResponseEntity<List<PurchaseReport>> getAllPurchaseReport(){
 		return new ResponseEntity<List<PurchaseReport>>(service.getAllPurchaseReports(),HttpStatus.OK);
 	}
